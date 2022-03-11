@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import DataService from '../../services/DataService';
+import { toast } from 'react-toastify';
 //Components 
 import ContainerPage from '../../components/ContainerPage';
 import Menu from '../../components/Menu';
@@ -6,23 +8,22 @@ import ContainerForm from '../../components/ContainerForm';
 import InputForm from '../../components/InputForm';
 import Line from '../../components/Line';
 
-const CompanyRegister = () => {
 
+const CompanyRegister = () => {
   const initialInputsState = {
     id: null, 
     companyName: "", 
     fantasyName: "",
-    cnpj: null, 
+    cnpj: "", 
     email: "",
-    zipCode: null,
+    zipCode: "",
     address: "",
-    addressNumber: null,
+    addressNumber: "",
     district: "",
     city: "",
     addressComplement: "",
-    latitude: null,
-    longitude: null,
-    active: false,
+    latitude: "",
+    longitude: "",
   };
 
   const [input, setInputs] = useState(initialInputsState);
@@ -32,28 +33,64 @@ const CompanyRegister = () => {
     setInputs({ ...input, [name]: value });
   };
 
+    function handleSubmit(event) {
+      event.preventDefault();
+      var data = {
+        companyName: input.companyName, 
+        latitude: input.latitude,
+        longitude: input.longitude,
+      }
+
+    if(!input.companyName || !input.fantasyName || !input.cnpj || !input.email || !input.zipCode || !input.address || !input.addressNumber || !input.district || !input.city || !input.latitude || !input.longitude) {
+      toast.error(`Campos obrigatórios!`);
+    } else {
+      try {
+        DataService.create(data)
+        .then(response => {
+          setInputs({
+            id: response.data.id,
+            companyName: response.data.companyName, 
+            latitude: response.data.latitude,
+            longitude: response.data.longitude,
+          })
+          toast.success(`Empresa cadastrada com sucesso!`)
+          setInputs(initialInputsState);
+        })}
+        catch(e) {
+          toast.e(e.response.data)
+        };
+    
+    }
+  }
+
+  function cleanPage(event){
+    event.preventDefault();
+    setInputs(initialInputsState);
+  }
+
+
   return (
     <ContainerPage>
       <Menu/>
-      <ContainerForm title="Nova empresa">
+      <ContainerForm save={handleSubmit} cancel={cleanPage} title="Nova empresa">
         <InputForm
           style={{ width: "48%" }} 
           type="text"
           label='Razão social'
-          id="company-name"
-          value={input.company_name}
+          id="companyName"
+          value={input.companyName}
           onChange={handleInputChange}
-          name='company-name'
+          name='companyName'
           required
         />
         <InputForm
           style={{ width: "48%" }} 
           type="text"
           label='Nome fantasia'
-          id="fantasy-name"
-          value={input.fantasy_name}
+          id="fantasyName"
+          value={input.fantasyName}
           onChange={handleInputChange}
-          name='fantasy-name'
+          name='fantasyName'
           required
         />    
         <InputForm
@@ -81,10 +118,10 @@ const CompanyRegister = () => {
           style={{ width: "32%" }} 
           type="number"
           label='CEP'
-          id="zip-code"
-          value={input.zip_code}
+          id="zipCode"
+          value={input.zipCode}
           onChange={handleInputChange}
-          name='zip-code'
+          name='zipCode'
           required
         />
         <InputForm
@@ -101,10 +138,10 @@ const CompanyRegister = () => {
           style={{ width: "32%" }} 
           type="number"
           label='Número'
-          id="address-number"
-          value={input.address_number}
+          id="addressNumber"
+          value={input.addressNumber}
           onChange={handleInputChange}
-          name='address-number'
+          name='addressNumber'
           required
         />
         <InputForm
@@ -131,10 +168,10 @@ const CompanyRegister = () => {
           style={{ width: "100%" }}
           type="text"
           label='Complemento'
-          id="address-complement"
-          value={input.address_complement}
+          id="addressComplement"
+          value={input.addressComplement}
           onChange={handleInputChange}
-          name='address-complement'
+          name='addressComplement'
         />
         <Line/>
         <InputForm

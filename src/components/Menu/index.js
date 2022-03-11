@@ -4,7 +4,8 @@ import {
   ContainerMenu, 
   MenuList, 
   Title,
-  MenuListItem
+  MenuListItem, 
+  StyledLink
 } from './styles';
 
 function Menu() {
@@ -13,9 +14,9 @@ function Menu() {
     <ContainerMenu>
       <MenuList >
           <Title>Sgi</Title>
-          <MenuListItem >Mapa</MenuListItem>
-          <MenuListItem >Produtos</MenuListItem>
-          <MenuListItem >Empresas</MenuListItem>
+          <MenuListItem><StyledLink activeClassName="active"  to="/map">Mapa</StyledLink></MenuListItem>
+          <MenuListItem><StyledLink activeClassName="active"  to="/product_register">Produtos</StyledLink></MenuListItem>
+          <MenuListItem><StyledLink activeClassName="active"  to="/company_register">Empresas</StyledLink></MenuListItem>
       </MenuList>
     </ContainerMenu>
     </>

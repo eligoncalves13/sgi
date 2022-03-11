@@ -11,12 +11,12 @@ const STYLES = [
     'btn-gray'
 ]
 
-function Button({children, type, style}) {
+function Button({children, style, ...others}) {
     const checkButtonStyle = STYLES.includes(style) ? style : STYLES[0];
     
     return (
       <ContainerButton>
-        <ButtonSubmit type={type} className={`${checkButtonStyle}`}> 
+        <ButtonSubmit className={`${checkButtonStyle}`} {...others}> 
            {children}
         </ButtonSubmit>
       </ContainerButton>  

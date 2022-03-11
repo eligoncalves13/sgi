@@ -10,18 +10,21 @@ import {
     Title 
 } from './styles';
 
-function ContainerForm({children, title}) {
+function ContainerForm({children, title, save, cancel }) {
   return (
+    <>
     <Container>
         <Header>
             <Title>{title}</Title>
             <DivButton>
-                <Button style='btn-gray'>Cancelar</Button>
-                <Button style='btn-blue'>Salvar</Button>
+                <Button onClick={cancel} style='btn-gray'>Cancelar</Button>
+                <Button onClick={save} style='btn-blue'>Salvar</Button>
             </DivButton>
         </Header>
         <Form>{children}</Form>      
     </Container>
+    </>
+    
   );
 }
 

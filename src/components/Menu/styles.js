@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const ContainerMenu = styled.nav`
   background-color: #0d6ef7;
@@ -24,5 +25,15 @@ export const MenuListItem = styled.li`
   cursor: pointer;
   font-size: 14px;
   padding: 0 10px;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 `;
 
+export const StyledLink = styled(NavLink)`
+  &.${props => props.activeClassName} {
+    color: #FAFAFA; 
+  }
+`;
