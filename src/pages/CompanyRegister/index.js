@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import DataService from '../../services/DataService';
+import CompanyService from '../../services/CompanyService';
 import { toast } from 'react-toastify';
 //Components 
 import ContainerPage from '../../components/ContainerPage';
@@ -45,7 +45,7 @@ const CompanyRegister = () => {
       toast.error(`Campos obrigatórios!`);
     } else {
       try {
-        DataService.create(data)
+        CompanyService.create(data)
         .then(response => {
           setInputs({
             id: response.data.id,
@@ -63,7 +63,7 @@ const CompanyRegister = () => {
     }
   }
 
-  function cleanPage(event){
+  function cleanInput(event){
     event.preventDefault();
     setInputs(initialInputsState);
   }
@@ -72,7 +72,7 @@ const CompanyRegister = () => {
   return (
     <ContainerPage>
       <Menu/>
-      <ContainerForm save={handleSubmit} cancel={cleanPage} title="Nova empresa">
+      <ContainerForm save={handleSubmit} cancel={cleanInput} title="Nova empresa">
         <InputForm
           style={{ width: "48%" }} 
           type="text"
