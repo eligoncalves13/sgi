@@ -6,7 +6,7 @@ import {
   InputText
 } from './styles';
 
-function InputForm({label, style, ...otherProps}) {
+const InputForm = ({label, style, ...otherProps}) => {
   return (
     <ContainerInput style={style}>
         <DescriptionInput>{label}</DescriptionInput>

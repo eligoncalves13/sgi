@@ -1,5 +1,5 @@
 import React from 'react';
-//Syles
+//Styles
 import { 
     ContainerButton, 
     ButtonSubmit 
@@ -8,12 +8,14 @@ import {
 const STYLES = [
     'btn-round-blue', 
     'btn-blue', 
-    'btn-gray'
+    'btn-gray',
+    'btn-red',
+    'btn-green',
+    'btn-blue-list',
 ]
 
-function Button({children, style, ...others}) {
+const Button = ({children, style, ...others}) => {
     const checkButtonStyle = STYLES.includes(style) ? style : STYLES[0];
-    
     return (
       <ContainerButton>
         <ButtonSubmit className={`${checkButtonStyle}`} {...others}> 

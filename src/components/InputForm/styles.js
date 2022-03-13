@@ -4,6 +4,10 @@ export const ContainerInput = styled.div`
   font-family: 'Raleway', sans-serif;
   display: flex;
   flex-direction: column;
+
+  @media only screen and (max-width: 400px){
+    width: 100% !important ; 
+  }
 `;
 
 export const DescriptionInput = styled.label`
@@ -23,6 +27,7 @@ export const InputText = styled.input`
   outline: none;
   padding-left: 5px;
   width: 100%;
+  
   &:focus {
     border-color: #0d6ef7; 
   }

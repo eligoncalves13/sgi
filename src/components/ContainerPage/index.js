@@ -4,7 +4,7 @@ import {
   Container 
 } from './styles';
 
-function ContainerPage({children}) {
+const ContainerPage = ({children}) => {
   return (
       <Container>
           {children} 

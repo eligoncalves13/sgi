@@ -16,9 +16,12 @@ export const ContainerInput = styled.div`
   &:hover {
     border-color: #4164f5;
   }
-
   &:focus {
     border-color: #4164f5;
+  }
+
+  @media only screen and (max-width: 400px){
+    width: 100%; 
   }
 `;
 

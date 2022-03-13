@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
-import CompanyService from '../../services/CompanyService';
+//Libraries
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+//JSON Server 
+import CompanyService from '../../services/CompanyService';
 //Components 
 import ContainerPage from '../../components/ContainerPage';
 import Menu from '../../components/Menu';
 import ContainerForm from '../../components/ContainerForm';
 import InputForm from '../../components/InputForm';
 import Line from '../../components/Line';
-
+import Tags from '../../components/Tags';
+import Button from '../../components/Button';
 
 const CompanyRegister = () => {
   const initialInputsState = {
@@ -23,23 +27,40 @@ const CompanyRegister = () => {
     city: "",
     addressComplement: "",
     latitude: "",
-    longitude: "",
+    longitude: ""
   };
 
   const [input, setInputs] = useState(initialInputsState);
+  const [group, setGroup] = useState([]);
+
+  const history = useNavigate();
 
   const handleInputChange = event => {
     const { name, value } = event.target;
     setInputs({ ...input, [name]: value });
   };
 
-    function handleSubmit(event) {
-      event.preventDefault();
-      var data = {
-        companyName: input.companyName, 
-        latitude: input.latitude,
-        longitude: input.longitude,
-      }
+  const selectedTags = tags => {
+    setGroup(tags)
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    var data = {
+      companyName: input.companyName, 
+      fantasyName: input.fantasyName,
+      cnpj: input.cnpj, 
+      email: input.email,
+      zipCode: input.zipCode,
+      address: input.address,
+      addressNumber: input.addressNumber,
+      district: input.district,
+      city: input.city,
+      addressComplement: input.addressComplement,
+      latitude: parseFloat(input.latitude),
+      longitude: parseFloat(input.longitude),
+      group: group
+    }
 
     if(!input.companyName || !input.fantasyName || !input.cnpj || !input.email || !input.zipCode || !input.address || !input.addressNumber || !input.district || !input.city || !input.latitude || !input.longitude) {
       toast.error(`Campos obrigatórios!`);
@@ -50,24 +71,38 @@ const CompanyRegister = () => {
           setInputs({
             id: response.data.id,
             companyName: response.data.companyName, 
+            fantasyName: response.data.fantasyName,
+            cnpj: response.data.cnpj, 
+            email: response.data.email,
+            zipCode: response.data.zipCode,
+            address: response.data.address,
+            addressNumber: response.data.addressNumber,
+            district: response.data.district,
+            city: response.data.city,
+            addressComplement: response.data.addressComplement,
             latitude: response.data.latitude,
             longitude: response.data.longitude,
+            group: response.data.group
           })
           toast.success(`Empresa cadastrada com sucesso!`)
-          setInputs(initialInputsState);
+          cleanInput(event);
         })}
         catch(e) {
           toast.e(e.response.data)
         };
-    
     }
   }
 
-  function cleanInput(event){
+  const cleanInput = event => {
     event.preventDefault();
     setInputs(initialInputsState);
+    setGroup([]);
   }
 
+  const openCompanyList = event => {
+    event.preventDefault();
+    history('/company_list');
+  }
 
   return (
     <ContainerPage>
@@ -92,7 +127,16 @@ const CompanyRegister = () => {
           onChange={handleInputChange}
           name='fantasyName'
           required
-        />    
+        />  
+        <Tags 
+          style={{ width: "100%" }} 
+          label='Grupo'
+          id="group"
+          value={group}
+          name='group'
+          selectedTags={selectedTags}
+          required
+        />  
         <InputForm
           style={{ width: "48%" }} 
           type="number"
@@ -193,6 +237,7 @@ const CompanyRegister = () => {
           name='longitude'
         />
       </ContainerForm>
+      <Button onClick={openCompanyList} style='btn-blue-list'>Lista de Empresas</Button>  
     </ContainerPage>
   )
 }

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-//Json Server
+//JSON Server
 import ProductService from '../../services/ProductService';
 import CompanyService from '../../services/CompanyService';
 //Libraries
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 //Components 
 import ContainerPage from '../../components/ContainerPage';
@@ -12,6 +13,8 @@ import InputForm from '../../components/InputForm';
 import Line from '../../components/Line';
 import TextArea from '../../components/TextArea';
 import Select from '../../components/Select';
+import ImageUrl from '../../components/ImageUrl';
+import Button from '../../components/Button';
 
 const ProductRegister = () => {
   const initialInputsState = {
@@ -26,6 +29,10 @@ const ProductRegister = () => {
 
   const [input, setInput] = useState(initialInputsState);
   const [company, setCompany] = useState([]);
+  const [group, setGroup] = useState([]);
+
+  const history = useNavigate();
+
 
   useEffect(() => {
     getInput();
@@ -35,29 +42,25 @@ const ProductRegister = () => {
       CompanyService.getAll()
       .then((response) => {
         setCompany(response.data)
+        setGroup(response.data)
       })
     }
 
-  const groupList = [
-    'Fruta', 
-    'Verdura'
-  ]
-
-  const handleInputChange = event => {
+  const handleChange = event => {
     const { name, value } = event.target;
     setInput({ ...input, [name]: value });
   };
 
-    function handleSubmit(event) {
-      event.preventDefault();
-      var data = {
+  const handleSubmit = event => {
+    event.preventDefault();
+    var data = {
         url: input.url, 
         name: input.name,
         unitCost: input.unitCost,
         description: input.description,
         provider: input.provider, 
         group: input.group
-      }
+    }
 
     if(!input.url || !input.name || !input.unitCost || !input.description || !input.provider || !input.group) {
       toast.error(`Campos obrigatórios!`);
@@ -75,30 +78,40 @@ const ProductRegister = () => {
             group: response.data.group
           })
           toast.success(`Produto cadastrado com sucesso!`)
-          setInput(initialInputsState);
+          cleanInput(event)
         })}
-        catch(e) {
-          toast.e(e.response.data)
-        };
+      catch(e) {
+         toast.e(e.response.data)
+      };
     }
   }
 
-  function cleanInput(event){
+  const cleanInput = event => {
     event.preventDefault();
     setInput(initialInputsState);
+  }
+
+  const openProductList = event => {
+    event.preventDefault();
+    history('/product_list');
   }
 
   return (
     <ContainerPage>
       <Menu/>
       <ContainerForm save={handleSubmit} cancel={cleanInput} title="Novo produto">
+        {input.url && (
+          <ImageUrl 
+            url={input.url}
+            title="Imagem da URL"/>
+        )}
         <InputForm
           style={{ width: "100%" }} 
           type="text"
           label='URL da imagem'
           id="image"
           value={input.url}
-          onChange={handleInputChange}
+          onChange={handleChange}
           name='url'
           required
         />
@@ -108,7 +121,7 @@ const ProductRegister = () => {
           label='Nome'
           id="name"
           value={input.name}
-          onChange={handleInputChange}
+          onChange={handleChange}
           name='name'
           required
         />    
@@ -118,7 +131,7 @@ const ProductRegister = () => {
           label='Custo unitário'
           id="unitCost"
           value={input.unitCost}
-          onChange={handleInputChange}
+          onChange={handleChange}
           name='unitCost'
           required
         />
@@ -127,7 +140,7 @@ const ProductRegister = () => {
           label='Descrição'
           id="description"
           value={input.description}
-          onChange={handleInputChange}
+          onChange={handleChange}
           name="description"
           required
         />
@@ -136,7 +149,7 @@ const ProductRegister = () => {
           style={{ width: "48%" }} 
           label='Fornecedor'
           value={input.provider}
-          onChange={handleInputChange}
+          onChange={handleChange}
           options={company.map((input) => {
             return <option value={input.companyName}>{input.companyName}</option>
           })}
@@ -148,15 +161,16 @@ const ProductRegister = () => {
           style={{ width: "48%" }} 
           label='Grupo'
           value={input.group}
-          onChange={handleInputChange}
-          options={groupList.map((input) => {
-            return <option value={input}>{input}</option>
+          onChange={handleChange}
+          options={group.map((input) => {
+            return <option value={input.group}>{input.group}</option>
           })}
           name="group"
           description="Selecione um grupo"
           required
         />
       </ContainerForm>
+      <Button onClick={openProductList} style='btn-blue-list'>Lista de Produtos</Button>  
     </ContainerPage>
   )
 }

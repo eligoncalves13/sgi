@@ -4,7 +4,7 @@ import {
     LineDiv 
 } from './styles';
 
-function Line() {
+const Line = () => {
   return (
       <LineDiv/>
   )

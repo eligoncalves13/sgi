@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 //Styles
 import { 
   ContainerMenu, 
@@ -8,15 +8,21 @@ import {
   StyledLink
 } from './styles';
 
-function Menu() {
+const Menu = () => {
   return (
     <>
     <ContainerMenu>
-      <MenuList >
+      <MenuList>
           <Title>Sgi</Title>
-          <MenuListItem><StyledLink activeClassName="active"  to="/map">Mapa</StyledLink></MenuListItem>
-          <MenuListItem><StyledLink activeClassName="active"  to="/product_register">Produtos</StyledLink></MenuListItem>
-          <MenuListItem><StyledLink activeClassName="active"  to="/company_register">Empresas</StyledLink></MenuListItem>
+          <MenuListItem>
+            <StyledLink activeClassName="active"  to="/map">Mapa</StyledLink>
+          </MenuListItem>
+          <MenuListItem>
+            <StyledLink activeClassName="active"  to="/product_register">Produtos</StyledLink>
+          </MenuListItem>
+          <MenuListItem>
+            <StyledLink activeClassName="active"  to="/company_register">Empresas</StyledLink>
+          </MenuListItem>
       </MenuList>
     </ContainerMenu>
     </>

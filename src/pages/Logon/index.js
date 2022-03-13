@@ -9,18 +9,18 @@ import { useNavigate } from 'react-router-dom';
 //Styles
 import { 
   Container, 
+  Title,
   ContainerLogin
 } from './styles';
 
 const Logon = () => {
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
 
   const history = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
     let currentErrors = [];
 
@@ -39,8 +39,8 @@ const Logon = () => {
 
   return (
     <Container>
-      <ContainerLogin onSubmit={handleSubmit} > 
-        <h2>Login</h2>
+      <ContainerLogin onSubmit={handleSubmit}> 
+        <Title>Login</Title>
         <InputLogon
           placeholder='E-mail'
           type='email'

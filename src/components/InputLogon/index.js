@@ -6,9 +6,9 @@ import {
     ContainerInput, 
     InputText,
     ErrorMessage
-    } from './styles';
+} from './styles';
 
-function InputLogon({element, icon, errorMessage, ...otherProps}) {
+const InputLogon = ({element, icon, errorMessage, ...otherProps}) => {
   return (
     <>
     <ContainerInput

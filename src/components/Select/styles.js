@@ -4,6 +4,10 @@ export const ContainerSelect = styled.div`
   font-family: 'Raleway', sans-serif;
   display: flex;
   flex-direction: column;
+
+  @media only screen and (max-width: 400px){
+    width: 100% !important ; 
+  }
 `;
 
 export const DescriptionSelect = styled.label`
@@ -28,3 +32,7 @@ export const List = styled.select`
     border-color: #0d6ef7; 
   }
 `;
+
+export const Option = styled.option`
+  font-size: inherit
+`

@@ -3,16 +3,17 @@ import React from 'react';
 import {
   ContainerSelect,
   DescriptionSelect,
-  List
+  List,
+  Option
 } from './styles';
 
-function Select({ style, label, options, description, ...otherProps }) {
+const Select = ({style, label, description, options, ...otherProps}) => {
   
   return (
     <ContainerSelect style={style}>
       <DescriptionSelect>{label}</DescriptionSelect>
       <List {...otherProps} selected="">
-        <option disabled value="">{description}</option>
+        <Option disabled value="">{description}</Option>
         {options}
       </List>
     </ContainerSelect>

@@ -10,9 +10,8 @@ import {
     Title 
 } from './styles';
 
-function ContainerForm({children, title, save, cancel }) {
+const ContainerForm = ({children, title, save, cancel}) => {
   return (
-    <>
     <Container>
         <Header>
             <Title>{title}</Title>
@@ -21,10 +20,8 @@ function ContainerForm({children, title, save, cancel }) {
                 <Button onClick={save} style='btn-blue'>Salvar</Button>
             </DivButton>
         </Header>
-        <Form>{children}</Form>      
-    </Container>
-    </>
-    
+        <Form>{children}</Form>    
+    </Container>    
   );
 }
 

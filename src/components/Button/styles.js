@@ -24,6 +24,25 @@ export const ContainerButton = styled.div`
       margin: 10px 0 10px 10px;
       padding: 6px 10px;
   }
+  .btn-red {
+      background-color: #D82D56;
+      border: 1px solid #D82D56;
+      border-radius: 4px;
+      padding: 6px 10px;
+  }
+  .btn-green {
+      background-color: #8DB51B;
+      border: 1px solid #8DB51B;
+      border-radius: 5px;
+      padding: 6px 10px;
+  }
+  .btn-blue-list {
+      background-color: #0d6ef7; 
+      border: 1px solid #0d6ef7;
+      border-radius: 4px;
+      margin: 10px 20px ;
+      padding: 6px 10px;
+  }
 `;
 
 export const ButtonSubmit = styled.button`
