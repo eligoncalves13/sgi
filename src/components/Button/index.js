@@ -6,7 +6,7 @@ import {
 } from './styles';
 
 const STYLES = [
-    'btn-round-blue', 
+    'btn-login-blue', 
     'btn-blue', 
     'btn-gray',
     'btn-red',

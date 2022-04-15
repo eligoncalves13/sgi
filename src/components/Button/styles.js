@@ -3,16 +3,18 @@ import styled from 'styled-components';
 export const ContainerButton = styled.div`
   display: flex;  
   
-  .btn-round-blue {
-      background-color: #4164f5; 
-      border: 1px solid #4164f5;
-      border-radius: 20px;
-      margin: 10px 10px 10px 0;
-      padding: 10px 20px;
+  .btn-login-blue {
+      background-color: #1C90C7; 
+      border: 1px solid #1C90C7;
+      border-radius: 10px;
+      font-size: 16px;
+      height: 45px;
+      margin: 5px;
+      width: 300px;
   }
   .btn-blue {
-      background-color: #0d6ef7; 
-      border: 1px solid #0d6ef7;
+      background-color: #1C90C7;
+      border: 1px solid #1C90C7;
       border-radius: 4px;
       margin: 10px 0 10px 10px;
       padding: 6px 10px;
@@ -37,10 +39,10 @@ export const ContainerButton = styled.div`
       padding: 6px 10px;
   }
   .btn-blue-list {
-      background-color: #0d6ef7; 
-      border: 1px solid #0d6ef7;
+      background-color: #1C90C7; 
+      border: 1px solid #1C90C7;
       border-radius: 4px;
-      margin: 10px 20px ;
+      font-size: 14px;
       padding: 6px 10px;
   }
 `;
