@@ -9,19 +9,30 @@ import {
     THeader, 
     TBody, 
     Row, 
-    RowItem, 
+    RowItem,
+    ContainerButton 
   } from './styles';
 
-  const Table = ({title, column, data, edit, remove}) => {
-    const THeadItem = ({item}) => <th>{item.heading}</th>
+  const Table = ({title, column, data, edit, remove, open, label}) => {
+    const THeadItem = ({item}) => (
+      <th>{item.heading}</th>
+    )
     const TBodyItem = ({item, column, edit, remove}) => (
       <Row>
           {column.map((columnItem) => {
               if(columnItem.value.includes('edit')) {
-                return  <RowItem><Button style='btn-green' onClick={edit}>Editar</Button></RowItem>
+                return (
+                  <RowItem>
+                    <Button style='btn-green' onClick={edit}>Editar</Button>
+                  </RowItem>
+                )
               }
               if(columnItem.value.includes('remove')) {
-                  return  <RowItem><Button style='btn-red' onClick={remove}>Remover</Button></RowItem>
+                return (
+                  <RowItem>
+                    <Button style='btn-red' onClick={remove}>Remover</Button>
+                  </RowItem>
+                )
               }
               return <RowItem>{item[`${columnItem.value}`]}</RowItem>
           })}
@@ -36,13 +47,25 @@ import {
           <ContainerTable>
               <THeader>
                   <Row>
-                    {column.map((item) => <THeadItem item={item}/>)}
+                    {column.map((item) => (
+                      <THeadItem 
+                        item={item}/>
+                    ))}
                   </Row>
               </THeader>
               <TBody>
-                {data.map((item) => <TBodyItem item={item} column={column} edit={() => edit(item.id)} remove={() => remove(item.id)}/>)}
+                {data.map((item) => (
+                  <TBodyItem 
+                    item={item} 
+                    column={column} 
+                    edit={() => edit(item.id)} 
+                    remove={() => remove(item.id)}/>
+                ))}
               </TBody>
           </ContainerTable>
+          <ContainerButton>
+            <Button onClick={open} style='btn-blue-list'>{label}</Button>
+          </ContainerButton>
       </Container>
   );
 }
