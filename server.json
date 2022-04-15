@@ -1,8 +1,33 @@
 {
   "company_list": [
-    
+    {
+      "companyName": "Élida Beatriz ME",
+      "fantasyName": "Beatriz Moda",
+      "cnpj": "89898989",
+      "email": "beatriz@example",
+      "zipCode": "89218325",
+      "address": "Rua Carlos Willy Boehm",
+      "addressNumber": "618",
+      "district": "Costa e Silva",
+      "city": "Joinville",
+      "addressComplement": "",
+      "latitude": -26.27111601624498,
+      "longitude": -48.86328582957203,
+      "group": [
+        "Roupas"
+      ],
+      "id": 1
+    }
   ],
   "product_list": [
-   
+    {
+      "url": "https://images.unsplash.com/photo-1588689653274-cd16f09dc67b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      "name": "Bermuda CV",
+      "unitCost": "50.99",
+      "description": "Bermuda vermelha curta",
+      "provider": "Élida Beatriz ME",
+      "group": "Roupas",
+      "id": 1
+    }
   ]
 }
