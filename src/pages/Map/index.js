@@ -29,7 +29,7 @@ const Map = () => {
     lng: -8.088943993315855
   };
 
-  const API_KEY = process.env.API_KEY;
+  const API_KEY = process.env.MAP_API_KEY;
 
   return (
     <ContainerPage>
