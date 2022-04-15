@@ -1,4 +1,5 @@
 import React from 'react';
+import MenuBurger from '../MenuBurger';
 //Styles
 import { 
   Container 
@@ -7,6 +8,7 @@ import {
 const ContainerPage = ({children}) => {
   return (
       <Container>
+        <MenuBurger/>
           {children} 
       </Container>
   );

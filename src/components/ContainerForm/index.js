@@ -20,7 +20,7 @@ const ContainerForm = ({children, title, save, cancel}) => {
                 <Button onClick={save} style='btn-blue'>Salvar</Button>
             </DivButton>
         </Header>
-        <Form>{children}</Form>    
+        <Form>{children}</Form> 
     </Container>    
   );
 }
