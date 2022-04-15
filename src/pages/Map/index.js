@@ -5,7 +5,9 @@ import { GoogleMap, Marker, InfoWindow, LoadScript } from '@react-google-maps/ap
 import CompanyService from '../../services/CompanyService';
 //Components 
 import ContainerPage from '../../components/ContainerPage';
-import Menu from '../../components/Menu';
+import Header from '../../components/Header';
+import ContainerMain from '../../components/ContainerMain';
+import Footer from '../../components/Footer';
 
 const Map = () => {
   const [property, setProperty] = useState([]);
@@ -29,13 +31,16 @@ const Map = () => {
 
   return (
     <ContainerPage>
-      <Menu/>
+    
+      <Header 
+        title={"Mapa"}/>
+      <ContainerMain>
       <LoadScript
         id= 'google-map-script'
-        googleMapsApiKey= "YOUR_APY_KEY"
+        googleMapsApiKey= ""
       >
         <GoogleMap
-          mapContainerStyle={{width: "100%", height: "100%"}}
+          mapContainerStyle={{width: "100%", height: "100vh"}}
           center={defaultCenter}
           zoom={2}
         >
@@ -66,7 +71,10 @@ const Map = () => {
          }
         </GoogleMap>
       </LoadScript>
+      </ContainerMain>
+      <Footer/>
     </ContainerPage>
+   
     )
 }
 
