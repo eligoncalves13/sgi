@@ -37,7 +37,7 @@ const Map = () => {
       <ContainerMain>
       <LoadScript
         id= 'google-map-script'
-        googleMapsApiKey= ""
+        googleMapsApiKey= "API_KEY"
       >
         <GoogleMap
           mapContainerStyle={{width: "100%", height: "100vh"}}
