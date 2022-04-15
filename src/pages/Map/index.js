@@ -28,8 +28,7 @@ const Map = () => {
     lat: 35.81243247098794, 
     lng: -8.088943993315855
   };
-
-  const API_KEY = process.env.MAP_API_KEY;
+  const API_KEY = process.env.REACT_APP_API_KEY;
 
   return (
     <ContainerPage>
