@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+//Images
+import HomeImage from "../../assets/home.jpg";
+import Logo from "../../assets/logo1.png";
 //Components
 import InputLogon from '../../components/InputLogon'
 import Button from '../../components/Button';
@@ -10,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { 
   Container, 
   Title,
+  ContainerImage,
   ContainerLogin
 } from './styles';
 
@@ -39,8 +43,12 @@ const Logon = () => {
 
   return (
     <Container>
+      <ContainerImage>
+      <img src={HomeImage} alt='Imagem Painel Solar'/>
+      </ContainerImage>
       <ContainerLogin onSubmit={handleSubmit}> 
-        <Title>Login</Title>
+        <img src={Logo} alt="Imagem Logo"/>
+        <Title>Seja bem vindo</Title>
         <InputLogon
           placeholder='E-mail'
           type='email'
@@ -60,7 +68,7 @@ const Logon = () => {
             console.log(event.target.value)}}
           errorMessage={errors.password}
         />
-        <Button type='submit' style='btn-round-blue'>Sign in</Button>
+        <Button type='submit' style='btn-login-blue'>Entrar</Button>
       </ContainerLogin>
     </Container>
   )
