@@ -6,8 +6,10 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 //Components
 import ContainerPage from '../../components/ContainerPage';
-import Menu from '../../components/Menu';
 import Table from '../../components/Table';
+import Header from '../../components/Header';
+import ContainerMain from '../../components/ContainerMain';
+import Footer from '../../components/Footer';
 
 const CompanyList = () => {
   const [company, setCompany] = useState([]);
@@ -53,16 +55,28 @@ const CompanyList = () => {
       });
   }
 
+  const openCompanyList = event => {
+    event.preventDefault();
+    history('/company_register');
+  }
+
+
   return (
     <ContainerPage>
-      <Menu/>
+    <Header
+        title="Empresas"/>
+      <ContainerMain>
       <Table 
         title="Lista de Empresas" 
         data={company} 
         column={column} 
         edit={openCompanyEdit} 
-        remove={deleteCompany}/>
-      </ContainerPage>
+        remove={deleteCompany}
+        open={openCompanyList}
+        label="Cadastrar Empresas"/>
+      </ContainerMain>
+      <Footer/>
+    </ContainerPage>
   );
 }
 

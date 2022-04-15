@@ -3,18 +3,18 @@ import React, { useEffect, useState } from 'react';
 import ProductService from '../../services/ProductService';
 import CompanyService from '../../services/CompanyService';
 //Libraries
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 //Components 
 import ContainerPage from '../../components/ContainerPage';
-import Menu from '../../components/Menu';
+import ContainerMain from '../../components/ContainerMain';
+import Header from '../../components/Header';
 import ContainerForm from '../../components/ContainerForm';
 import InputForm from '../../components/InputForm';
 import Line from '../../components/Line';
 import TextArea from '../../components/TextArea';
 import Select from '../../components/Select';
 import ImageUrl from '../../components/ImageUrl';
-import Button from '../../components/Button';
+import Footer from '../../components/Footer';
 
 const ProductRegister = () => {
   const initialInputsState = {
@@ -30,9 +30,6 @@ const ProductRegister = () => {
   const [input, setInput] = useState(initialInputsState);
   const [company, setCompany] = useState([]);
   const [group, setGroup] = useState([]);
-
-  const history = useNavigate();
-
 
   useEffect(() => {
     getInput();
@@ -91,14 +88,12 @@ const ProductRegister = () => {
     setInput(initialInputsState);
   }
 
-  const openProductList = event => {
-    event.preventDefault();
-    history('/product_list');
-  }
-
   return (
     <ContainerPage>
-      <Menu/>
+    {/* <Menu/> */}
+      <Header
+        title="Produtos"/>
+      <ContainerMain>
       <ContainerForm save={handleSubmit} cancel={cleanInput} title="Novo produto">
         {input.url && (
           <ImageUrl 
@@ -170,7 +165,8 @@ const ProductRegister = () => {
           required
         />
       </ContainerForm>
-      <Button onClick={openProductList} style='btn-blue-list'>Lista de Produtos</Button>  
+      </ContainerMain>
+      <Footer/>
     </ContainerPage>
   )
 }

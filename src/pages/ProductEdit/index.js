@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
 //Libraries
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {toast} from 'react-toastify';
 //JSON Server
 import ProductService from '../../services/ProductService';
 import CompanyService from '../../services/CompanyService';
 //Components 
 import ContainerPage from '../../components/ContainerPage';
-import Menu from '../../components/Menu';
 import ContainerForm from '../../components/ContainerForm';
 import InputForm from '../../components/InputForm';
 import Line from '../../components/Line';
 import TextArea from '../../components/TextArea';
 import Select from '../../components/Select';
 import ImageUrl from '../../components/ImageUrl';
-import Button from '../../components/Button';
+import Header from '../../components/Header';
+import ContainerMain from '../../components/ContainerMain';
+import Footer from '../../components/Footer';
 
 const ProductEdit = () => {
     const initialInputState = {
@@ -31,7 +32,6 @@ const ProductEdit = () => {
     const [company, setCompany] = useState([]);
     const [group, setGroup] = useState([]);
 
-    const history = useNavigate();
     const {id} = useParams();
 
     useEffect(() => {
@@ -74,14 +74,11 @@ const ProductEdit = () => {
         setInput(initialInputState);
     };
 
-    const openProductList = event => {
-      event.preventDefault();
-      history('/product_list');
-    }
-
     return (
-        <ContainerPage>
-      <Menu/>
+      <ContainerPage>
+      <Header
+        title="Produtos"/>
+      <ContainerMain>
       <ContainerForm save={updateInput} cancel={cleanInput} title="Edite produto">
         {input.url && (
         <ImageUrl
@@ -153,7 +150,8 @@ const ProductEdit = () => {
           required
         />
       </ContainerForm>
-      <Button onClick={openProductList} style='btn-blue-list'>Lista de Produtos</Button>  
+      </ContainerMain>
+      <Footer/>
     </ContainerPage>
     );
 }

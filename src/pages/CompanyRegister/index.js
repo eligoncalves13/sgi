@@ -6,12 +6,13 @@ import { toast } from 'react-toastify';
 import CompanyService from '../../services/CompanyService';
 //Components 
 import ContainerPage from '../../components/ContainerPage';
-import Menu from '../../components/Menu';
+import ContainerMain from '../../components/ContainerMain';
+import Header from '../../components/Header';
 import ContainerForm from '../../components/ContainerForm';
 import InputForm from '../../components/InputForm';
 import Line from '../../components/Line';
-import Tags from '../../components/Tags';
-import Button from '../../components/Button';
+import Tag from '../../components/Tag';
+import Footer from '../../components/Footer';
 
 const CompanyRegister = () => {
   const initialInputsState = {
@@ -99,14 +100,11 @@ const CompanyRegister = () => {
     setGroup([]);
   }
 
-  const openCompanyList = event => {
-    event.preventDefault();
-    history('/company_list');
-  }
-
   return (
     <ContainerPage>
-      <Menu/>
+      <Header
+        title="Empresas"/>
+      <ContainerMain>
       <ContainerForm save={handleSubmit} cancel={cleanInput} title="Nova empresa">
         <InputForm
           style={{ width: "48%" }} 
@@ -128,7 +126,7 @@ const CompanyRegister = () => {
           name='fantasyName'
           required
         />  
-        <Tags 
+        <Tag
           style={{ width: "100%" }} 
           label='Grupo'
           id="group"
@@ -237,8 +235,9 @@ const CompanyRegister = () => {
           name='longitude'
         />
       </ContainerForm>
-      <Button onClick={openCompanyList} style='btn-blue-list'>Lista de Empresas</Button>  
-    </ContainerPage>
+      </ContainerMain>
+      <Footer/>
+     </ContainerPage> 
   )
 }
 

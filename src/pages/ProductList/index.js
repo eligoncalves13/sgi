@@ -6,8 +6,10 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 //Components
 import ContainerPage from '../../components/ContainerPage';
-import Menu from '../../components/Menu';
 import Table from '../../components/Table';
+import Header from '../../components/Header';
+import ContainerMain from '../../components/ContainerMain';
+import Footer from '../../components/Footer';
 
 const ProductList = () => {
   const [product, setProduct] = useState([]);
@@ -53,17 +55,27 @@ const ProductList = () => {
       });
   }
 
+  const openProductList = event => {
+    event.preventDefault();
+    history('/product_register');
+  }
+
   return (
       <ContainerPage>
-          <Menu/>
+      <Header
+        title="Produtos"/>
+        <ContainerMain>
           <Table 
             title="Lista de Produtos" 
             data={product} 
             column={column} 
             edit={openProductEdit} 
-            remove={deleteProduct}/>
+            remove={deleteProduct}
+            open={openProductList}
+            label="Cadastrar Produtos"/>          
+        </ContainerMain>
+        <Footer/>
       </ContainerPage>
   )
 }
-
 export default ProductList;

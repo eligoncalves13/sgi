@@ -1,18 +1,19 @@
 
 import React, { useState, useEffect } from 'react';
 //Libraries
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 //JSON Server
 import CompanyService from '../../services/CompanyService';
 //Components 
 import ContainerPage from '../../components/ContainerPage';
-import Menu from '../../components/Menu';
+import ContainerMain from '../../components/ContainerMain';
 import ContainerForm from '../../components/ContainerForm';
 import InputForm from '../../components/InputForm';
 import Line from '../../components/Line';
-import Tags from '../../components/Tags';
-import Button from '../../components/Button';
+import Tag from '../../components/Tag';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
 const CompanyEdit = () => {
     const initialInputState = {
@@ -34,7 +35,6 @@ const CompanyEdit = () => {
     const [input, setInput] = useState(initialInputState);
     const [group, setGroup] = useState([]);
 
-    const history = useNavigate();
     const {id} = useParams();
 
     useEffect(() => {
@@ -75,14 +75,11 @@ const CompanyEdit = () => {
         setGroup([])
     }
 
-    const openCompanyList = event => {
-      event.preventDefault();
-      history('/company_list');
-    }  
-
     return (
     <ContainerPage>
-      <Menu/>
+    <Header
+        title="Empresas"/>
+      <ContainerMain>
       <ContainerForm save={updateInput} cancel={cleanInput} title="Editar empresa">
         <InputForm
           style={{ width: "48%" }} 
@@ -104,7 +101,7 @@ const CompanyEdit = () => {
           name='fantasyName'
           required
         />  
-        <Tags 
+        <Tag
           style={{ width: "100%" }} 
           label='Grupo'
           id="group"
@@ -213,7 +210,8 @@ const CompanyEdit = () => {
           name='longitude'
         />
       </ContainerForm>
-      <Button onClick={openCompanyList} style='btn-blue-list'>Lista de Empresas</Button>  
+      </ContainerMain>
+      <Footer/>
     </ContainerPage>
     );
 }
