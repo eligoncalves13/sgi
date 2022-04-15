@@ -11,15 +11,19 @@ import CompanyEdit from './pages/CompanyEdit';
 import ProductRegister from './pages/ProductRegister';
 import ProductList from './pages/ProductList';
 import ProductEdit from './pages/ProductEdit';
+// import Menu from './components/Menu';
 
 const App = () => {
+  // const [path, setPath] = useState(window.location.pathname)
   return (
     <>
     <ToastContainer/>
+    
+    {/* {path !== "/" && <Menu/>} */}
     <Routes>
       <Route exact path="/" element={<Logon/>}/>
       <Route path="/map" element={<Map/>}/>
-      <Route path="/company_register" element={<CompanyRegister />}/>
+      <Route path="/company_register" element={<CompanyRegister/>}/>
       <Route path="/company_list" element={<CompanyList/>}/>
       <Route path="/company_list/:id" element={<CompanyEdit/>} />
       <Route path="/product_register" element={<ProductRegister/>}/>
