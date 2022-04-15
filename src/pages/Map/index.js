@@ -28,7 +28,7 @@ const Map = () => {
     lat: 35.81243247098794, 
     lng: -8.088943993315855
   };
-  const API_KEY = process.env.REACT_APP_API_KEY;
+  const MAP_API_KEY = process.env.REACT_APP_API_KEY;
 
   return (
     <ContainerPage>
@@ -38,7 +38,7 @@ const Map = () => {
       <ContainerMain>
       <LoadScript
         id= 'google-map-script'
-        googleMapsApiKey={API_KEY}
+        googleMapsApiKey={MAP_API_KEY}
       >
         <GoogleMap
           mapContainerStyle={{width: "100%", height: "100vh"}}
