@@ -1,6 +1,6 @@
 # DevInHouse - Integrated Management System :mag_right:
 
-Project developed in the DEVinHouse program of SENAI/ACATE,  is a prototype application for integrated management of companies and their products.
+Project developed in the DEVinHouse program of SENAI/ACATE, is a prototype application for integrated management of companies and their products.
 
 ## 🚀 Technologies
 
